@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/dylancorbus/go-database/internal/pkg/index/constants"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -58,8 +59,14 @@ func main() {
 		switch args[0] {
 		//SELECT someName
 		case "SELECT":
-			emp, _ := operations.Read(args[1])
-			fmt.Println(emp)
+			emp, emps, err := operations.Read(args[1])
+			if err != nil {
+				log.Fatal(err)
+			} else if emp != nil {
+				fmt.Println(emp)
+			} else {
+				fmt.Println(emps)
+			}
 		//UPDATE someName field value
 		case "UPDATE":
 			operations.Update(args[1], args[2], args[3])

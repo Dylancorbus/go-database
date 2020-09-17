@@ -11,7 +11,7 @@ import (
 )
 
 func Update(id string, field string, value string) {
-	emp, err := Read(id)
+	emp, _, err := Read(id)
 	if err != nil {
 		fmt.Println(err)
 		return

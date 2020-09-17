@@ -10,7 +10,23 @@ import (
 	"strings"
 )
 
-func Read(id string) (*models.Employee, error) {
+func Read(id string) (*models.Employee, []models.Employee, error) {
+	if(id == "*") {
+		emps, err := readAll()
+		if err != nil {
+			return nil, nil, err
+		}
+		return nil, emps, nil
+	}
+	emp, err := read(id)
+	if err != nil {
+		return nil, nil, err
+	}
+	return emp, nil, nil
+
+}
+
+func read(id string) (*models.Employee, error) {
 	file, _ := os.Open(constants.Transaction)
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
@@ -32,4 +48,21 @@ func Read(id string) (*models.Employee, error) {
 		return nil, err
 	}
 	return emp, nil
+}
+
+func readAll() ([]models.Employee, error) {
+	file, _ := os.Open(constants.Transaction)
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	var emps []models.Employee
+	for scanner.Scan() {
+		x := scanner.Text()
+		emp, err := models.New(x)
+		if err != nil {
+			return nil, err
+		}
+		emps = append(emps, *emp)
+	}
+	file.Close()
+	return emps, nil
 }
