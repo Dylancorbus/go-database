@@ -1,7 +1,4 @@
 # easyDB
 
 ## Overview
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nulla numquam quidem necessitatibus minus ex unde dignissimos hic tempora magni vero, similique fugiat adipisci iste est, nam saepe, aspernatur consectetur voluptate!
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure nulla ipsa cum aut, suscipit expedita voluptatum eos asperiores fugit soluta recusandae libero ducimus sequi atque non doloribus error exercitationem deleniti.
-Id aliquam ratione aperiam reprehenderit ipsum modi quasi
-
+Easy DB is a project I am working on to learn goLang, as well as gain knowledge on how databases are built. The plan is to eventually have a command line tool that is able to take in a user provided schema for the model, and generate a database for the schema with CRUD functionality via, sql queries, api calls, and possibly streaming.
