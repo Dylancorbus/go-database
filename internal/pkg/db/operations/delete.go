@@ -4,14 +4,14 @@ import (
 	"github.com/dylancorbus/go-database/internal/pkg/constants"
 	"github.com/dylancorbus/go-database/internal/pkg/file/operations"
 	constants2 "github.com/dylancorbus/go-database/internal/pkg/index/constants"
+	operations2 "github.com/dylancorbus/go-database/internal/pkg/index/operations"
 	"strconv"
 	"strings"
 )
 
 func DeleteItem(id string) {
-	arr := operations.DeleteLine(constants.Index, constants2.Indexes[id])
+	arr := operations2.Delete(id)
 	operations.DeleteLine(constants.Transaction, constants2.Indexes[id])
-	delete(constants2.Indexes, id)
 	for i := 0; i < len(arr); i++ {
 		textArr := strings.Split(arr[i], ";")
 		line := i + 1

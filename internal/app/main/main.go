@@ -56,9 +56,9 @@ func main() {
 		text = strings.Replace(text, "\n", "", -1)
 		args := strings.Split(text, " ")
 		fmt.Println("EXECUTING QUERY:", text)
-		switch args[0] {
+		switch strings.ToLower(args[0]) {
 		//SELECT someName
-		case "SELECT":
+		case "select":
 			emp, emps, err := operations.Read(args[1])
 			if err != nil {
 				log.Fatal(err)
@@ -68,14 +68,14 @@ func main() {
 				fmt.Println(emps)
 			}
 		//UPDATE someName field value
-		case "UPDATE":
+		case "update":
 			operations.Update(args[1], args[2], args[3])
 		//INSERT Employee name: someName salary: value
-		case "INSERT":
+		case "insert":
 			i, _ := strconv.Atoi(args[5])
 			operations.Create(args[3], i)
 		//DELETE someName
-		case "DELETE":
+		case "delete":
 			operations.DeleteItem(args[1])
 		case "exit()":
 			os.Exit(1)
